@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "django-blog"
+version = "0.1.0"
+description = "First Principles take home assessment"
+authors = ["andrewmehta <andmehta@icloud.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.0.4"
+djangorestframework = "^3.15.1"
+psycopg = "^3.1.18"
+psycopg-binary = "^3.1.18"
+djangorestframework-simplejwt = "^5.3.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

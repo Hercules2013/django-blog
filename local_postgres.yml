@@ -1,0 +1,29 @@
+# This docker compose exists ONLY to run postgres locally,
+#  so that the dev environment works
+# This does get run prior to runserver
+services:
+  postgres:
+    image: postgres
+    restart: always
+    user: postgres
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: blogs
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+volumes:
+  db-data:
+    name: blog-db-data-local
+secrets:
+  db-password:
+    file: secrets/password.txt
